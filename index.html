@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delicioso — Home Baker Cakes N Chocolates | Hulimavu, Bengaluru</title>
+  <meta name="description" content="Delicioso — Custom cakes and handcrafted chocolates made fresh from a home kitchen in Hulimavu, Bengaluru. 500+ happy customers. Order via WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #fdf8f0;
+      --warm-white: #fffdf9;
+      --rose: #c9707a;
+      --rose-dark: #a8555f;
+      --rose-light: #f0d0d3;
+      --rose-pale: #fdf0f1;
+      --chocolate: #3d1f1f;
+      --chocolate-mid: #6b3a3a;
+      --gold: #c9a84c;
+      --gold-light: #f0dfa0;
+      --blush: #f5ddd5;
+      --sage: #7d9b76;
+      --text: #2a1a1a;
+      --text-mid: #6b4f4f;
+      --text-light: #a08080;
+      --border: rgba(201,112,122,0.15);
+      --shadow: rgba(61,31,31,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 3px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 18px 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: all 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(253,248,240,0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 30px var(--shadow);
+      padding: 12px 5%;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--chocolate);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--rose); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--rose); }
+    .nav-cta {
+      background: var(--rose);
+      color: #fff !important;
+      padding: 9px 20px;
+      border-radius: 50px;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--rose-dark) !important; transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--chocolate); border-radius: 2px; transition: all 0.3s; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 100px 5% 60px;
+      gap: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 80% 60% at 70% 40%, var(--rose-pale) 0%, transparent 70%),
+                  radial-gradient(ellipse 50% 50% at 20% 80%, var(--blush) 0%, transparent 60%);
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,112,122,0.1);
+      top: -100px; right: 10%;
+      animation: float-ring 8s ease-in-out infinite;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,112,122,0.08);
+      bottom: 10%; left: 5%;
+      animation: float-ring 10s ease-in-out infinite reverse;
+    }
+    @keyframes float-ring { 0%,100%{transform:scale(1) rotate(0deg)} 50%{transform:scale(1.05) rotate(5deg)} }
+
+    .hero-text { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--rose-pale);
+      border: 1px solid var(--rose-light);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--rose-dark);
+      letter-spacing: 0.05em;
+      margin-bottom: 28px;
+      animation: fade-up 0.8s ease both;
+    }
+    .hero-badge svg { width: 14px; height: 14px; fill: var(--gold); }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 7vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.0;
+      color: var(--chocolate);
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+      animation: fade-up 0.8s 0.1s ease both;
+    }
+    .hero-title em { color: var(--rose); font-style: italic; }
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--text-mid);
+      margin-bottom: 20px;
+      animation: fade-up 0.8s 0.2s ease both;
+    }
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--text-light);
+      margin-bottom: 36px;
+      animation: fade-up 0.8s 0.3s ease both;
+    }
+    .hero-stats {
+      display: flex; gap: 32px; margin-bottom: 40px;
+      animation: fade-up 0.8s 0.4s ease both;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 800;
+      color: var(--chocolate); line-height: 1;
+    }
+    .stat-label { font-size: 0.72rem; color: var(--text-light); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 2px; }
+    .hero-btns {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      animation: fade-up 0.8s 0.5s ease both;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--rose);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-size: 0.9rem; font-weight: 500;
+      text-decoration: none;
+      transition: all 0.25s;
+      box-shadow: 0 8px 24px rgba(201,112,122,0.35);
+    }
+    .btn-primary:hover { background: var(--rose-dark); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201,112,122,0.4); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      color: var(--chocolate);
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-size: 0.9rem; font-weight: 500;
+      text-decoration: none;
+      border: 1.5px solid rgba(61,31,31,0.2);
+      transition: all 0.25s;
+    }
+    .btn-secondary:hover { border-color: var(--rose); color: var(--rose); transform: translateY(-2px); }
+
+    .hero-image {
+      position: relative; z-index: 1;
+      animation: fade-in 1s 0.3s ease both;
+    }
+    .hero-img-wrap {
+      position: relative;
+      border-radius: 40% 60% 60% 40% / 50% 40% 60% 50%;
+      overflow: hidden;
+      aspect-ratio: 1;
+      box-shadow: 0 40px 80px rgba(61,31,31,0.2);
+      animation: morph 8s ease-in-out infinite;
+    }
+    @keyframes morph {
+      0%,100% { border-radius: 40% 60% 60% 40% / 50% 40% 60% 50%; }
+      25% { border-radius: 60% 40% 50% 50% / 40% 60% 40% 60%; }
+      50% { border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%; }
+      75% { border-radius: 40% 60% 60% 40% / 60% 50% 50% 40%; }
+    }
+    .hero-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-float-badge {
+      position: absolute;
+      background: #fff;
+      border-radius: 16px;
+      padding: 12px 18px;
+      box-shadow: 0 8px 30px var(--shadow);
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    .hero-float-badge.top-left { top: 8%; left: -8%; animation: float-badge 4s ease-in-out infinite; }
+    .hero-float-badge.bottom-right { bottom: 12%; right: -8%; animation: float-badge 4s 2s ease-in-out infinite; }
+    @keyframes float-badge { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .float-stars { color: var(--gold); font-size: 0.9rem; }
+    .float-title { color: var(--chocolate); font-weight: 600; font-size: 0.85rem; }
+    .float-sub { color: var(--text-light); font-size: 0.72rem; }
+
+    @keyframes fade-up { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fade-in { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      background: var(--chocolate);
+      padding: 14px 0;
+      overflow: hidden;
+    }
+    .marquee-track {
+      display: flex; gap: 60px;
+      animation: marquee 20s linear infinite;
+      width: max-content;
+    }
+    .marquee-item {
+      white-space: nowrap;
+      color: var(--gold-light);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .marquee-dot { color: var(--rose); font-style: normal; }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ── SECTION STYLES ── */
+    section { padding: 90px 5%; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 16px;
+    }
+    .section-tag::before, .section-tag::after { content: '✦'; font-size: 0.6rem; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--chocolate);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    .section-title em { color: var(--rose); font-style: italic; }
+    .section-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+      max-width: 560px;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--warm-white);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .about-imgs { position: relative; }
+    .about-img-main {
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      box-shadow: 0 30px 60px var(--shadow);
+    }
+    .about-img-main img { width: 100%; height: 100%; object-fit: cover; }
+    .about-img-accent {
+      position: absolute;
+      bottom: -30px; right: -20px;
+      width: 55%;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      box-shadow: 0 20px 40px var(--shadow);
+      border: 6px solid var(--warm-white);
+    }
+    .about-img-accent img { width: 100%; height: 100%; object-fit: cover; }
+    .about-stamp {
+      position: absolute;
+      top: 30px; right: -10px;
+      width: 90px; height: 90px;
+      background: var(--rose);
+      border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: #fff;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(201,112,122,0.4);
+      animation: spin-slow 15s linear infinite;
+    }
+    @keyframes spin-slow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+    .stamp-inner { animation: spin-slow 15s linear infinite reverse; text-align: center; }
+    .stamp-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 800; line-height: 1; }
+    .stamp-text { font-size: 0.55rem; font-weight: 500; letter-spacing: 0.05em; opacity: 0.9; }
+
+    .about-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+    .pill {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--rose-pale);
+      border: 1px solid var(--rose-light);
+      padding: 8px 16px; border-radius: 50px;
+      font-size: 0.82rem; font-weight: 500; color: var(--rose-dark);
+    }
+
+    /* ── MENU ── */
+    #menu { background: var(--cream); }
+    .menu-header { text-align: center; margin-bottom: 60px; }
+    .menu-cats {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+      margin-top: 32px; margin-bottom: 50px;
+    }
+    .cat-btn {
+      padding: 9px 22px; border-radius: 50px;
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em;
+      cursor: pointer; border: 1.5px solid var(--border);
+      background: transparent; color: var(--text-mid);
+      transition: all 0.25s;
+    }
+    .cat-btn.active, .cat-btn:hover {
+      background: var(--chocolate); color: #fff; border-color: var(--chocolate);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .menu-card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: default;
+    }
+    .menu-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px var(--shadow); }
+    .card-img {
+      height: 200px; overflow: hidden;
+      background: linear-gradient(135deg, var(--rose-pale), var(--blush));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+    }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+    .card-body { padding: 20px; }
+    .card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--chocolate); margin-bottom: 6px;
+    }
+    .card-desc { font-size: 0.8rem; color: var(--text-light); line-height: 1.6; margin-bottom: 14px; }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; }
+    .card-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--rose);
+    }
+    .card-tag {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.05em;
+      padding: 3px 10px; border-radius: 50px;
+      background: var(--rose-pale); color: var(--rose-dark);
+    }
+    .menu-note {
+      text-align: center; margin-top: 40px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-style: italic; color: var(--text-light);
+    }
+    .menu-cta { text-align: center; margin-top: 40px; }
+
+    /* ── WHY ── */
+    #why {
+      background: var(--chocolate);
+      position: relative; overflow: hidden;
+    }
+    #why::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 80% 20%, rgba(201,112,122,0.15) 0%, transparent 60%),
+                  radial-gradient(ellipse 50% 50% at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 60%);
+    }
+    .why-header { text-align: center; margin-bottom: 60px; position: relative; z-index: 1; }
+    .why-header .section-title { color: var(--cream); }
+    .why-header .section-tag { color: var(--gold); }
+    .why-header .section-tag::before, .why-header .section-tag::after { content: '✦'; }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 28px; position: relative; z-index: 1;
+    }
+    .why-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px; padding: 32px 28px;
+      transition: all 0.3s;
+      text-align: center;
+    }
+    .why-card:hover {
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(201,112,122,0.4);
+      transform: translateY(-4px);
+    }
+    .why-icon {
+      font-size: 2.2rem; margin-bottom: 16px;
+      display: flex; align-items: center; justify-content: center;
+      width: 64px; height: 64px;
+      background: rgba(201,112,122,0.15);
+      border-radius: 50%; margin: 0 auto 16px;
+    }
+    .why-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+    .why-desc { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+    /* ── HOW TO ORDER ── */
+    #order { background: var(--warm-white); }
+    .order-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .order-steps { display: flex; flex-direction: column; gap: 28px; }
+    .step {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 24px; background: #fff; border-radius: 16px;
+      box-shadow: 0 4px 20px var(--shadow);
+      transition: transform 0.25s;
+    }
+    .step:hover { transform: translateX(6px); }
+    .step-num {
+      min-width: 44px; height: 44px;
+      background: var(--rose); color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 800;
+      box-shadow: 0 4px 12px rgba(201,112,122,0.4);
+    }
+    .step-title { font-weight: 600; color: var(--chocolate); margin-bottom: 6px; }
+    .step-desc { font-size: 0.85rem; color: var(--text-light); line-height: 1.7; }
+    .order-aside {
+      background: linear-gradient(145deg, var(--rose-pale), var(--blush));
+      border-radius: 24px; padding: 48px 40px;
+      border: 1px solid var(--rose-light);
+      text-align: center;
+    }
+    .order-aside-icon { font-size: 3rem; margin-bottom: 16px; }
+    .order-aside-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 800; color: var(--chocolate);
+      margin-bottom: 12px; line-height: 1.2;
+    }
+    .order-aside-desc { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; margin-bottom: 28px; }
+    .order-aside-note {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem; font-style: italic;
+      color: var(--text-light); margin-top: 20px;
+    }
+
+    /* ── REVIEWS ── */
+    #reviews { background: var(--cream); }
+    .reviews-header { text-align: center; margin-bottom: 20px; }
+    .reviews-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-style: italic; color: var(--text-light);
+      text-align: center; margin-bottom: 50px;
+    }
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .review-card {
+      background: #fff; border-radius: 20px; padding: 28px;
+      box-shadow: 0 4px 20px var(--shadow);
+      transition: transform 0.3s;
+      position: relative;
+    }
+    .review-card:hover { transform: translateY(-4px); }
+    .review-quote {
+      font-size: 3.5rem; line-height: 1; color: var(--rose-light);
+      font-family: Georgia, serif; position: absolute; top: 16px; right: 24px;
+    }
+    .review-stars { color: var(--gold); font-size: 1rem; letter-spacing: 2px; margin-bottom: 14px; }
+    .review-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; color: var(--text-mid); line-height: 1.8;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .review-author { display: flex; align-items: center; gap: 12px; }
+    .author-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--rose); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1rem;
+    }
+    .author-name { font-weight: 600; font-size: 0.88rem; color: var(--chocolate); }
+    .author-loc { font-size: 0.75rem; color: var(--text-light); }
+    .google-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.7rem; color: var(--text-light);
+      margin-top: 4px;
+    }
+    .reviews-cta { text-align: center; margin-top: 50px; }
+    .reviews-overall {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; margin-bottom: 40px;
+    }
+    .overall-score {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem; font-weight: 800; color: var(--chocolate);
+      line-height: 1;
+    }
+    .overall-right { text-align: left; }
+    .overall-stars { color: var(--gold); font-size: 1.3rem; }
+    .overall-count { font-size: 0.82rem; color: var(--text-light); margin-top: 2px; }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--chocolate);
+      position: relative; overflow: hidden;
+    }
+    #contact::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 30% 60%, rgba(201,112,122,0.12) 0%, transparent 70%);
+    }
+    .contact-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center; position: relative; z-index: 1;
+    }
+    .contact-left .section-title { color: var(--cream); }
+    .contact-left .section-tag { color: var(--gold); }
+    .contact-left .section-tag::before, .contact-left .section-tag::after { content: '✦'; }
+    .contact-left .section-desc { color: rgba(255,255,255,0.55); margin-top: 16px; }
+    .contact-details { margin-top: 40px; display: flex; flex-direction: column; gap: 20px; }
+    .contact-item {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .contact-icon {
+      width: 46px; height: 46px; min-width: 46px;
+      background: rgba(201,112,122,0.2);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .contact-label { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rose); margin-bottom: 4px; font-weight: 500; }
+    .contact-value { color: rgba(255,255,255,0.85); font-size: 0.9rem; line-height: 1.6; }
+    .contact-value a { color: inherit; text-decoration: none; }
+    .contact-right {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 44px 40px;
+      text-align: center;
+    }
+    .contact-right-emoji { font-size: 3rem; margin-bottom: 16px; }
+    .contact-right-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem; font-weight: 800; color: #fff;
+      margin-bottom: 12px; line-height: 1.2;
+    }
+    .contact-right-desc { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 28px; }
+    .btn-wa {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #25D366; color: #fff;
+      padding: 14px 28px; border-radius: 50px;
+      font-size: 0.9rem; font-weight: 500;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(37,211,102,0.3);
+      transition: all 0.25s;
+    }
+    .btn-wa:hover { background: #1ebe5b; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(37,211,102,0.4); }
+    .btn-call {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      padding: 14px 28px; border-radius: 50px;
+      font-size: 0.9rem; font-weight: 500;
+      text-decoration: none;
+      transition: all 0.25s;
+      margin-top: 12px;
+    }
+    .btn-call:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
+    .contact-right-note {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem; font-style: italic;
+      color: rgba(255,255,255,0.35); margin-top: 20px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a0e0e;
+      padding: 40px 5%;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; font-weight: 800;
+      color: var(--cream); margin-bottom: 8px;
+    }
+    .footer-logo span { color: var(--rose); }
+    .footer-sub { font-size: 0.8rem; color: rgba(255,255,255,0.3); margin-bottom: 24px; }
+    .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 24px; }
+    .footer-links a {
+      font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--rose); }
+    .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.2); }
+
+    /* ── FLOATING WA BUTTON ── */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 200;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+      text-decoration: none;
+      animation: pulse-wa 2.5s ease-in-out infinite;
+      transition: transform 0.2s;
+    }
+    .wa-float:hover { transform: scale(1.1); }
+    .wa-float svg { width: 28px; height: 28px; fill: #fff; }
+    @keyframes pulse-wa {
+      0%,100% { box-shadow: 0 8px 24px rgba(37,211,102,0.4); }
+      50% { box-shadow: 0 8px 40px rgba(37,211,102,0.6); }
+    }
+
+    /* ── MOBILE NAV ── */
+    .mobile-menu {
+      display: none; flex-direction: column; gap: 0;
+      position: fixed; top: 65px; left: 0; right: 0;
+      background: rgba(253,248,240,0.98);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 99; padding: 10px 0;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      padding: 14px 5%; font-size: 0.9rem; font-weight: 500;
+      color: var(--text-mid); text-decoration: none;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; text-align: center; padding-top: 120px; }
+      .hero-image { order: -1; max-width: 380px; margin: 0 auto; }
+      .hero-stats { justify-content: center; }
+      .hero-btns { justify-content: center; }
+      .hero-float-badge.top-left { left: 0; }
+      .hero-float-badge.bottom-right { right: 0; }
+      #about { grid-template-columns: 1fr; }
+      .about-imgs { height: 400px; margin-bottom: 40px; }
+      .order-inner { grid-template-columns: 1fr; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 70px 5%; }
+      .hero-stats { gap: 24px; }
+      .reviews-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#hero">Deli<span>cioso</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#order">How to Order</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Order Now</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#menu" onclick="toggleMenu()">Menu</a>
+  <a href="#why" onclick="toggleMenu()">Why Us</a>
+  <a href="#order" onclick="toggleMenu()">How to Order</a>
+  <a href="#reviews" onclick="toggleMenu()">Reviews</a>
+  <a href="#contact" onclick="toggleMenu()">Order Now</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-text">
+    <div class="hero-badge">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      5.0 ★ Google Rated &nbsp;·&nbsp; Hulimavu, Bengaluru
+    </div>
+    <h1 class="hero-title">Baked with<br /><em>Love,</em> Just<br />for You</h1>
+    <p class="hero-subtitle">Home Baker Cakes N Chocolates</p>
+    <p class="hero-tagline">"Handcrafted with Passion, Delivered with Love"</p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Happy Customers</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4.5</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5.0★</div>
+        <div class="stat-label">Google Rating</div>
+      </div>
+    </div>
+    <div class="hero-btns">
+      <a href="https://wa.me/919702007180?text=Hi%20Delicioso!%20I%27d%20like%20to%20place%20an%20order." class="btn-primary" target="_blank">
+        🍫 Order on WhatsApp
+      </a>
+      <a href="#menu" class="btn-secondary">📋 View Menu</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=700&q=80" alt="Beautiful custom cake by Delicioso" />
+    </div>
+    <div class="hero-float-badge top-left">
+      <div class="float-stars">★★★★★</div>
+      <div class="float-title">500+ Customers</div>
+      <div class="float-sub">Served with love</div>
+    </div>
+    <div class="hero-float-badge bottom-right">
+      <div class="float-title">🎂 Custom Cakes</div>
+      <div class="float-sub">Made fresh to order</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marquee">
+    <span class="marquee-item">Custom Birthday Cakes <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Handcrafted Chocolates <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Anniversary Cakes <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Photo Cakes <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Cupcakes & Brownies <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Festive Gift Hampers <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Theme Cakes <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Delivered Across Bengaluru <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Custom Birthday Cakes <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Handcrafted Chocolates <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Anniversary Cakes <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Photo Cakes <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Cupcakes & Brownies <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Festive Gift Hampers <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Theme Cakes <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Delivered Across Bengaluru <span class="marquee-dot">✦</span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-imgs">
+    <div class="about-img-main">
+      <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600&q=80" alt="Baking with heart" />
+    </div>
+    <div class="about-img-accent">
+      <img src="https://images.unsplash.com/photo-1587248720327-8eb72564be1e?w=400&q=80" alt="Handcrafted chocolates" />
+    </div>
+    <div class="about-stamp">
+      <div class="stamp-inner">
+        <div class="stamp-num">500+</div>
+        <div class="stamp-text">Happy<br/>Customers</div>
+      </div>
+    </div>
+  </div>
+  <div class="about-content">
+    <div class="section-tag">Our Story</div>
+    <h2 class="section-title">Baked with <em>Heart</em></h2>
+    <p class="section-desc" style="margin-top:16px;">
+      Welcome to <strong>Delicioso</strong> — a passionate home bakery nestled in the heart of Hulimavu, Bengaluru. We believe every celebration deserves something truly special: made fresh, made with love, and made just for you.
+    </p>
+    <p class="section-desc" style="margin-top:16px;">
+      Specialising in <strong>custom cakes</strong> for every occasion and <strong>handcrafted chocolates</strong> from the finest ingredients — every Delicioso creation is baked fresh to order, right from our home kitchen. No mass production, no shortcuts. Just pure, wholesome goodness crafted over <strong>4.5 years</strong>.
+    </p>
+    <div class="about-pills">
+      <div class="pill">⭐ 5.0 Google Rating</div>
+      <div class="pill">🏠 100% Homemade</div>
+      <div class="pill">🎂 Custom Designs</div>
+      <div class="pill">🚚 Pan-Bengaluru Delivery</div>
+      <div class="pill">✨ No Preservatives</div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="menu-header">
+    <div class="section-tag">Our Offerings</div>
+    <h2 class="section-title">The <em>Menu</em></h2>
+  </div>
+  <div class="menu-cats">
+    <button class="cat-btn active" onclick="filterMenu('all', this)">All</button>
+    <button class="cat-btn" onclick="filterMenu('cake', this)">🎂 Cakes</button>
+    <button class="cat-btn" onclick="filterMenu('choc', this)">🍫 Chocolates</button>
+    <button class="cat-btn" onclick="filterMenu('cup', this)">🧁 Cupcakes & Brownies</button>
+    <button class="cat-btn" onclick="filterMenu('fest', this)">🎁 Festive Specials</button>
+  </div>
+  <div class="menu-grid" id="menuGrid">
+
+    <!-- CAKES -->
+    <div class="menu-card" data-cat="cake">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=400&q=80" alt="Birthday Cake" />
+      </div>
+      <div class="card-body">
+        <div class="card-name">Birthday Cake</div>
+        <div class="card-desc">Your choice of flavour, custom design & personal message. Made fresh to order.</div>
+        <div class="card-footer">
+          <div class="card-price">₹799+</div>
+          <div class="card-tag">Custom</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="cake">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?w=400&q=80" alt="Anniversary Cake" />
+      </div>
+      <div class="card-body">
+        <div class="card-name">Anniversary Cake</div>
+        <div class="card-desc">Elegant tiers, floral & romantic designs crafted for your special day.</div>
+        <div class="card-footer">
+          <div class="card-price">₹999+</div>
+          <div class="card-tag">Custom</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="cake">
+      <div class="card-img">🎂</div>
+      <div class="card-body">
+        <div class="card-name">Photo Cake</div>
+        <div class="card-desc">Edible photo print on your favourite cake — a unique, personalised delight.</div>
+        <div class="card-footer">
+          <div class="card-price">₹850+</div>
+          <div class="card-tag">Custom</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="cake">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1562440499-64c9a111f713?w=400&q=80" alt="Theme Cake" />
+      </div>
+      <div class="card-body">
+        <div class="card-name">Theme Cake</div>
+        <div class="card-desc">Sculpted showstoppers for any theme or fandom — from cartoons to professions.</div>
+        <div class="card-footer">
+          <div class="card-price">₹1,299+</div>
+          <div class="card-tag">Signature</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHOCOLATES -->
+    <div class="menu-card" data-cat="choc">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1549007953-2f2dc0b24019?w=400&q=80" alt="Dark Chocolate Box" />
+      </div>
+      <div class="card-body">
+        <div class="card-name">Dark Chocolate Box</div>
+        <div class="card-desc">Intense 70% dark chocolate pieces — a box of 12 artisanal pieces.</div>
+        <div class="card-footer">
+          <div class="card-price">₹450</div>
+          <div class="card-tag">Box of 12</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="choc">
+      <div class="card-img">🍫</div>
+      <div class="card-body">
+        <div class="card-name">Milk Chocolate Truffles</div>
+        <div class="card-desc">Silky ganache-filled truffles, finished with a delicate cocoa dust.</div>
+        <div class="card-footer">
+          <div class="card-price">₹499</div>
+          <div class="card-tag">Bestseller</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="choc">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=400&q=80" alt="Assorted Gift Box" />
+      </div>
+      <div class="card-body">
+        <div class="card-name">Assorted Gift Box</div>
+        <div class="card-desc">Curated dark, milk & white chocolate selection — perfect for gifting.</div>
+        <div class="card-footer">
+          <div class="card-price">₹799</div>
+          <div class="card-tag">Gift Ready</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="choc">
+      <div class="card-img">🍫</div>
+      <div class="card-body">
+        <div class="card-name">Nutty Chocolate Bark</div>
+        <div class="card-desc">Belgian chocolate with roasted nuts & dried fruits — irresistibly crunchy.</div>
+        <div class="card-footer">
+          <div class="card-price">₹399</div>
+          <div class="card-tag">New</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CUPCAKES -->
+    <div class="menu-card" data-cat="cup">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=400&q=80" alt="Chocolate Cupcakes" />
+      </div>
+      <div class="card-body">
+        <div class="card-name">Chocolate Cupcakes</div>
+        <div class="card-desc">Moist sponge with whipped chocolate buttercream — perfect little bites.</div>
+        <div class="card-footer">
+          <div class="card-price">₹350</div>
+          <div class="card-tag">Box of 6</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="cup">
+      <div class="card-img">🧁</div>
+      <div class="card-body">
+        <div class="card-name">Red Velvet Cupcakes</div>
+        <div class="card-desc">Classic red velvet with tangy, fluffy cream cheese frosting on top.</div>
+        <div class="card-footer">
+          <div class="card-price">₹380</div>
+          <div class="card-tag">Classic</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="cup">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&q=80" alt="Fudge Brownies" />
+      </div>
+      <div class="card-body">
+        <div class="card-name">Fudge Brownies</div>
+        <div class="card-desc">Dense, gooey chocolate fudge brownies — box of 6 indulgent squares.</div>
+        <div class="card-footer">
+          <div class="card-price">₹420</div>
+          <div class="card-tag">Box of 6</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="cup">
+      <div class="card-img">🧁</div>
+      <div class="card-body">
+        <div class="card-name">Cream Cheese Brownies</div>
+        <div class="card-desc">Marbled brownie with a tangy cream cheese swirl — a flavour you'll crave.</div>
+        <div class="card-footer">
+          <div class="card-price">₹460</div>
+          <div class="card-tag">Favourite</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FESTIVE -->
+    <div class="menu-card" data-cat="fest">
+      <div class="card-img">🎄</div>
+      <div class="card-body">
+        <div class="card-name">Christmas Cake</div>
+        <div class="card-desc">Rich fruit cake with festive fondant décor — a seasonal showpiece.</div>
+        <div class="card-footer">
+          <div class="card-price">₹1,200</div>
+          <div class="card-tag">Seasonal</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="fest">
+      <div class="card-img">🪔</div>
+      <div class="card-body">
+        <div class="card-name">Diwali Chocolate Box</div>
+        <div class="card-desc">Artisan mithai-inspired chocolate gift box — a festive treat for every home.</div>
+        <div class="card-footer">
+          <div class="card-price">₹699</div>
+          <div class="card-tag">Seasonal</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="fest">
+      <div class="card-img">❤️</div>
+      <div class="card-body">
+        <div class="card-name">Valentine's Special</div>
+        <div class="card-desc">Heart-shaped cake + truffle hamper for two — celebrate love deliciously.</div>
+        <div class="card-footer">
+          <div class="card-price">₹1,499</div>
+          <div class="card-tag">Combo</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card" data-cat="fest">
+      <div class="card-img">🎁</div>
+      <div class="card-body">
+        <div class="card-name">Rakhi Gift Hamper</div>
+        <div class="card-desc">Personalised cake + artisan chocolates combo — the perfect sibling gift.</div>
+        <div class="card-footer">
+          <div class="card-price">₹999</div>
+          <div class="card-tag">Combo</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <p class="menu-note">★ Prices shown are starting prices. Final cost varies by size, design complexity & customisation.</p>
+  <div class="menu-cta">
+    <a href="https://wa.me/919702007180?text=Hi%20Delicioso!%20I%27d%20like%20to%20customise%20an%20order." class="btn-primary" target="_blank">
+      💬 WhatsApp for Custom Order
+    </a>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="why-header">
+    <div class="section-tag">Our Promise</div>
+    <h2 class="section-title" style="color:var(--cream)">Why Choose <em style="color:var(--rose)">Delicioso</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">⭐</div>
+      <div class="why-title">Perfect 5-Star Rated</div>
+      <div class="why-desc">A flawless 5.0 on Google from our wonderful customers across Bengaluru. Our quality speaks louder than any ad.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🏠</div>
+      <div class="why-title">100% Homemade & Fresh</div>
+      <div class="why-desc">Every item is made fresh from scratch — no preservatives, no pre-mixes. Real ingredients, real love in every bite.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🎨</div>
+      <div class="why-title">Fully Custom Creations</div>
+      <div class="why-desc">Your vision, our craft. Every order is personalised to your taste, theme, occasion and budget — no two cakes alike.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🚚</div>
+      <div class="why-title">Pan-Bengaluru Delivery</div>
+      <div class="why-desc">We deliver fresh, carefully packaged orders right to your door — anywhere across Bengaluru, on time.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🍰</div>
+      <div class="why-title">4.5+ Years Experience</div>
+      <div class="why-desc">Over 500 happy customers and 4.5 years of baking expertise ensure every creation is a masterpiece.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💬</div>
+      <div class="why-title">Personal Touch</div>
+      <div class="why-desc">Direct communication with your baker every step of the way. We guide you through every flavour and design choice.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO ORDER -->
+<section id="order">
+  <div class="order-inner">
+    <div>
+      <div class="section-tag">Simple Process</div>
+      <h2 class="section-title">How to <em>Order</em></h2>
+      <p class="section-desc" style="margin-top:16px;margin-bottom:40px;">
+        Ordering your dream cake is simple! Just follow these three easy steps.
+      </p>
+      <div class="order-steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">Call or WhatsApp Us</div>
+            <div class="step-desc">Reach us at <a href="https://wa.me/919702007180" style="color:var(--rose);font-weight:600;">097020 07180</a> via call or WhatsApp. We're always happy to chat about your dream cake!</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">Share Your Requirements</div>
+            <div class="step-desc">Tell us your flavour preferences, design inspiration, occasion, and delivery date. We'll guide you through every available option.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">Freshly Made & Delivered!</div>
+            <div class="step-desc">Your creation is baked fresh and delivered with love, right to your doorstep on your chosen date — beautifully packaged.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="order-aside">
+      <div class="order-aside-icon">⏰</div>
+      <div class="order-aside-title">Order at Least 48 Hours in Advance</div>
+      <div class="order-aside-desc">To ensure the freshest quality and most beautiful result, we kindly ask you to place your order a minimum of 48 hours before your required date. Plan ahead to avoid disappointment!</div>
+      <a href="https://wa.me/919702007180?text=Hi%20Delicioso!%20I%27d%20like%20to%20place%20an%20order." class="btn-primary" target="_blank" style="width:100%;justify-content:center;">
+        🍫 Order Now on WhatsApp
+      </a>
+      <a href="tel:+919702007180" class="btn-secondary" style="width:100%;justify-content:center;margin-top:12px;">
+        📞 Call: 097020 07180
+      </a>
+      <p class="order-aside-note">We'll confirm your order within a few hours of your message.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="reviews-header">
+    <div class="section-tag">Customer Love</div>
+    <h2 class="section-title">Loved by <em>Bengaluru</em></h2>
+  </div>
+  <div class="reviews-overall">
+    <div class="overall-score">5.0</div>
+    <div class="overall-right">
+      <div class="overall-stars">★★★★★</div>
+      <div style="font-size:0.85rem;color:var(--text-mid);font-weight:500;">Google Rating</div>
+      <div class="overall-count">From our wonderful customers</div>
+    </div>
+  </div>
+  <p class="reviews-subtitle">Here's what our happy customers have to say ✨</p>
+  <div class="reviews-grid">
+
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">I ordered a custom theme cake for my daughter's 5th birthday and was absolutely blown away. The design was exactly what I described, the sponge was incredibly moist, and the buttercream was so light and delicious. Everyone at the party kept asking where it came from. Delicioso is truly a hidden gem in Bengaluru!</p>
+      <div class="review-author">
+        <div class="author-avatar">P</div>
+        <div>
+          <div class="author-name">Priya Nair</div>
+          <div class="author-loc">Koramangala</div>
+          <div class="google-badge">🔵 Google Review</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Ordered the assorted chocolate gift box for our anniversary and it was simply stunning. The chocolates were rich, creamy and tasted premium — honestly better than anything I've bought from a store. The packaging was beautiful too. Will be ordering again for every occasion without question!</p>
+      <div class="review-author">
+        <div class="author-avatar" style="background:var(--sage);">A</div>
+        <div>
+          <div class="author-name">Ananya Krishnamurthy</div>
+          <div class="author-loc">Jayanagar</div>
+          <div class="google-badge">🔵 Google Review</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Last-minute order for a corporate team event — barely 2 days in advance — and they delivered flawlessly. The red velvet cupcakes and fudge brownies were a massive hit. Timely delivery, gorgeous presentation and the taste was absolutely spot on. Highly recommend Delicioso to everyone!</p>
+      <div class="review-author">
+        <div class="author-avatar" style="background:var(--chocolate-mid);">R</div>
+        <div>
+          <div class="author-name">Rahul Sharma</div>
+          <div class="author-loc">Electronic City</div>
+          <div class="google-badge">🔵 Google Review</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">The birthday cake for my husband was absolutely perfect — beautiful design, amazing taste, and delivered right on time! She really listened to what I wanted and brought my vision to life. Will definitely order again for every special occasion. Thank you Delicioso!</p>
+      <div class="review-author">
+        <div class="author-avatar" style="background:var(--gold);">S</div>
+        <div>
+          <div class="author-name">Sneha Menon</div>
+          <div class="author-loc">Hulimavu</div>
+          <div class="google-badge">🔵 Google Review</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Ordered the Diwali chocolate hamper as a gift for my parents and they absolutely loved it! The chocolates had a wonderful festive feel and tasted divine. Very thoughtfully packaged too. This will be my go-to gifting option for every festival from now on!</p>
+      <div class="review-author">
+        <div class="author-avatar" style="background:#8b6b8b;">V</div>
+        <div>
+          <div class="author-name">Vikram Iyer</div>
+          <div class="author-loc">BTM Layout</div>
+          <div class="google-badge">🔵 Google Review</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-quote">"</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Best brownies I've ever had in my life — and I'm not exaggerating! The fudge brownies are dense, rich and absolutely gooey. I've ordered three times already. Also tried the red velvet cupcakes — equally amazing. Delicioso is a real gem for home baked goodness!</p>
+      <div class="review-author">
+        <div class="author-avatar" style="background:#7a8b6b;">M</div>
+        <div>
+          <div class="author-name">Meghna Patel</div>
+          <div class="author-loc">HSR Layout</div>
+          <div class="google-badge">🔵 Google Review</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="reviews-cta">
+    <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--text-light);margin-bottom:20px;font-style:italic;">
+      Had a great experience with us? We'd love to hear from you!
+    </p>
+    <a href="https://wa.me/919702007180?text=Hi%20Delicioso!" class="btn-primary" target="_blank">
+      💬 Share Your Experience
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="section-tag">Get in Touch</div>
+      <h2 class="section-title">Order Your <em>Treat</em></h2>
+      <p class="section-desc">Ready to make your celebration extra special? Reach out to us and let's create something delicious together!</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Address</div>
+            <div class="contact-value">Suraksha Golden Palms Apartment, B016,<br />1st Main Rd, Vinayak Nagar, Saraswathipuram,<br />Nyanappana Halli, Hulimavu,<br />Bengaluru, Karnataka 560076</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Phone / WhatsApp</div>
+            <div class="contact-value"><a href="tel:+919702007180">097020 07180</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">⏰</div>
+          <div>
+            <div class="contact-label">Order Notice</div>
+            <div class="contact-value">Minimum 48 hours in advance.<br />Contact us early to secure your preferred date!</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🚚</div>
+          <div>
+            <div class="contact-label">Delivery</div>
+            <div class="contact-value">We deliver fresh, lovingly packaged orders across all of Bengaluru.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-right">
+      <div class="contact-right-emoji">🎂</div>
+      <div class="contact-right-title">Ready to Place Your Order?</div>
+      <div class="contact-right-desc">Send us a WhatsApp message with your occasion, flavour preference, design ideas and delivery date — we'll get back to you promptly!</div>
+      <a href="https://wa.me/919702007180?text=Hi%20Delicioso!%20I%27d%20like%20to%20place%20an%20order." class="btn-wa" target="_blank" style="width:100%;justify-content:center;">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Order Now on WhatsApp
+      </a>
+      <a href="tel:+919702007180" class="btn-call" style="width:100%;justify-content:center;">
+        📞 Call: 097020 07180
+      </a>
+      <p class="contact-right-note">⏰ Please order at least 48 hours in advance to ensure freshness.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Deli<span>cioso</span></div>
+  <div class="footer-sub">Home Baker Cakes N Chocolates · Hulimavu, Bengaluru</div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#menu">Menu</a>
+    <a href="#why">Why Us</a>
+    <a href="#order">Order</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="footer-copy">© 2025 Delicioso — Home Baker Cakes N Chocolates. All rights reserved. · Crafted with ♥ in Bengaluru</div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/919702007180?text=Hi%20Delicioso!%20I%27d%20like%20to%20place%20an%20order." class="wa-float" target="_blank" title="Order on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // Menu filter
+  function filterMenu(cat, btn) {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.menu-card').forEach(card => {
+      const show = cat === 'all' || card.dataset.cat === cat;
+      card.style.display = show ? 'block' : 'none';
+    });
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.menu-card, .why-card, .step, .review-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
